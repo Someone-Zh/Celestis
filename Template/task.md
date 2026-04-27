@@ -1,0 +1,6 @@
+## 任务实施清单
+- [·] read xxx xxx xx file  # [·]代表完成
+- [x] execute bin           # [x]代表失败
+- [·] xxxxxxx               # [ ]代表进行中
+- [ ] ......
+......
