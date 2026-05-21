@@ -5,6 +5,8 @@ description: 修正需求
 
 @Template/base_root.md
 
+@Template/base.md
+
 ## 必须指定 已存在的修正文件（`.spec/{{功能}}/{{需求}}/fix.md`） 或 给定的信息可以获取到需求信息以确定需求目录
 * **必须**主动询问获取才能继续
   

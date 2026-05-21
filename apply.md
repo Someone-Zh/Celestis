@@ -5,6 +5,8 @@ description: 执行需求
 
 @Template/base_root.md
 
+@Template/base.md
+
 ## 必须给定一个已存在的需求目录，否则**必须**主动询问获取才能继续
 ## 执行需求
 1. 先读取需求所属功能的规范文件(`.spec/{{功能}}/spec.md`)了解功能目前涉及的信息，不存在则根据附录 .spec/{{功能}}/spec.md 文件格式 创建

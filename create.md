@@ -4,6 +4,9 @@ description: 创建功能需求
 @Template/file_spec.md
 
 @Template/base_root.md
+
+@Template/base.md
+
 ## 从输入信息中分析并判断在`.spec/spec.md` 尾部查找`项目下功能 `下是否有对应的功能.
 * 没有则根据当前功能创建
 * 仅包含 `{{功能规范文件}}` 如 `.spec/{{功能}}/spec.md ` 不要有下级目录和下级目录的文件
