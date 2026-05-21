@@ -27,6 +27,7 @@ description: 创建功能需求
 ### 必须坚持的核心理念
 * 必须通过提问完善粗略的想法，探索替代方案，并将设计分成章节进行验证。保存设计文档。
 * 把工作分成小任务（每份 2-5 分钟）。每个任务都有精确的文件路径、完整的代码和验证步骤。
+* 需要先评估本次需求对所属功能的规范文件(`.spec/{{功能}}/spec.md`)中的 `当前功能详细信息` 的设计文档按需求读取了解之前的设计
 * Don't assume. Don't hide confusion. Surface tradeoffs.Before implementing:
   1. State your assumptions explicitly. If uncertain, ask.
   2. If multiple interpretations exist, present them - don't pick silently.
