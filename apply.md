@@ -36,6 +36,11 @@ description: 执行需求
     1. "Add validation" → "Write tests for invalid inputs, then make them pass"
     2. "Fix the bug" → "Write a test that reproduces it, then make it pass"
     3. "Refactor X" → "Ensure tests pass before and after"
+
+## 注意
+* 当前一个设计文件过于庞大时（400行左右），需要按照在`design.md`同级目录下增加`{{功能点}}.md`来拆分设计文档,在`design.md`中描述引用对应的子功能点。
+* 当`{{功能点}}.md`也过于庞大时同理，也同样拆分，也更贴合渐进式加载。
+
 ## 附录
 * changes/tasks.md 文件格式
 ``` changes/tasks.md

@@ -25,6 +25,27 @@ description: 修正需求
 ### 必须坚持的核心理念
 * 必须通过提问完善粗略的想法，探索替代方案，并将设计分成章节进行验证。保存设计文档。
 * 把工作分成小任务（每份 2-5 分钟）。每个任务都有精确的文件路径、完整的代码和验证步骤。
+* 强制执行 RED-GREEN-REFACTOR：写失败测试，观察它失败，写最小代码，观察它通过，提交。删除测试前编写的代码。
+* 如果已有测试用例需同步修改已有的测试。
+* 计划进行审查，按严重程度报告问题。关键问题阻碍了进展。
+* Touch only what you must. Clean up only your own mess.
+  * When editing existing things:
+     1. Don't refactor things that aren't broken.
+     2. Don't refactor things that aren't broken. 
+     3. Match existing style, even if you'd do it differently. 
+ * When your changes create orphans:
+     1. Remove imports/variables/functions that YOUR changes made unused.
+     2. Don't remove pre-existing dead code unless asked.
+ * The test: Every changed line should trace directly to the user's request.
+* Define success criteria. Loop until verified.
+  * Transform tasks into verifiable goals:
+    1. "Add validation" → "Write tests for invalid inputs, then make them pass"
+    2. "Fix the bug" → "Write a test that reproduces it, then make it pass"
+    3. "Refactor X" → "Ensure tests pass before and after"
+
+## 注意
+* 当前一个设计文件过于庞大时（400行左右），需要按照在`design.md`同级目录下增加`{{功能点}}.md`来拆分设计文档,在`design.md`中描述引用对应的子功能点。
+* 当`{{功能点}}.md`也过于庞大时同理，也同样拆分，也更贴合渐进式加载。
 
 ## 附录
 * changes/tasks.md 文件格式
