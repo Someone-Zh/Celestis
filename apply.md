@@ -21,6 +21,7 @@ description: 执行需求
 
 ### 必须遵循的规则
 * 强制执行 RED-GREEN-REFACTOR：写失败测试，观察它失败，写最小代码，观察它通过，提交。删除测试前编写的代码。
+* 在没有明确要求不写注释时，必须添加完善的注释信息。
 * 计划进行审查，按严重程度报告问题。关键问题阻碍了进展。
 * Touch only what you must. Clean up only your own mess.
   * When editing existing things:
