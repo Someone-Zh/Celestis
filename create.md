@@ -7,62 +7,58 @@ description: 创建功能需求
 
 @Template/base.md
 
-## 从给定信息中分析功能和需求信息
-* 如果给定的是需求目录`.spec/{{功能}}/{{需求}}/design.md`（比如：`.spec/auth/.archive/login/design.md`）则从中直接获取需求和需求以及初步的设计需求信息
-* 如果给丁的目录不全比如 `.spec/{{功能}}/{{需求}}` `.spec/{{功能}}` 则根据已经获取的信息进行进一步询问
-* 如果完全没有信息或者信息无法确定则需要进一步询问
-* 只有获取到了完整的功能、需求、设计信息后在**必须**按照下面的`创建功能需求`执行处理
+## 1. 从输入信息中分析功能与需求
+* 如果输入提供的是标准需求目录 `.spec/{{功能}}/{{需求}}/design.md`（例如：`.spec/auth/.archive/login/design.md`），请直接从中提取需求内容以及初步的设计方案。
+* 如果输入的目录不完整（例如仅有 `.spec/{{功能}}/{{需求}}` 或 `.spec/{{功能}}`），则根据已有信息进行追问。
+* 如果完全没有提供上下文或信息无法确定，必须进一步提问。
+* **只有在完整获取到功能、需求、设计三要素后，才允许执行后续的“创建功能需求”流程。**
 
+## 2. 功能索引校验
+* 分析输入信息，并在 `.spec/spec.md` 尾部的“项目下功能”列表中查找是否存在对应功能。
+* 若不存在，则根据当前功能进行创建。
+* 注意：此步骤仅包含该功能的规范文件路径（如 `.spec/{{功能}}/spec.md`），不要包含任何下级目录或文件。
 
-## 从输入信息中分析并判断在`.spec/spec.md` 尾部查找`项目下功能 `下是否有对应的功能.
-* 没有则根据当前功能创建
-* 仅包含 `{{功能规范文件}}` 如 `.spec/{{功能}}/spec.md ` 不要有下级目录和下级目录的文件
+## 3. 创建功能需求（核心工作流）
 
-## 创建功能需求
 ### 必须遵守的工作流程
-1. 读取需求所属功能的规范文件(`.spec/{{功能}}/spec.md`)了解功能目前涉及的信息，不存在则根据附录中 .spec/{{功能}}/spec.md 文件格式 创建
-2. 先尽最大可能收集信息包括但不限于涉及的准确文档、当前代码位置和逻辑等信息保证准确的创建需求
-3. 在实施前探索用户意图、需求和设计
-4. 一次问一个问题 ——不要用太多问题让自己感到压力
-5. 任何有疑问的位置都必须询问确认具体意图在继续
-6. 多项选择题优先 ——比开放式回答更容易回答
-7. 渐进式验证 ——展示设计，获得批准后再继续
-8. 保持灵活 ——当有不合理的地方时，随时澄清
-9. 毫不留情地 ——移除所有设计中的多余功能
-10. 明确每个功能点的验收标准
+1. **前置查阅：** 读取需求所属功能的规范文件（`.spec/{{功能}}/spec.md`）以了解现有背景。若文件不存在，则参考附录中的模板进行创建。
+2. **充分收集：** 尽最大可能收集上下文，包括但不限于涉及的准确文档、当前代码位置、现有业务逻辑等，确保需求创建的准确性。
+3. **意图探索：** 在正式实施前，深入探索用户的真实意图、潜在需求和架构设计。
+4. **单点提问：** 每次只提出一个问题 —— 避免问题过多给用户带来理解压力。
+5. **疑必确问：** 任何有疑问或模糊不清的地方，必须向用户确认具体意图后方可继续。
+6. **选项优先：** 优先提供“多项选择题”，而非“开放式简答题”，降低用户的沟通成本。
+7. **渐进式验证：** 采用“展示设计 $\rightarrow$ 获得授权 $\rightarrow$ 继续推进”的循环模式。
+8. **保持灵活性：** 发现设计中存在不合理之处时，随时与用户澄清。
+9. **极简主义：** 无情地裁剪设计中所有非必要、冗余的“镀金”功能。
+10. **明确指标：** 明确每一个功能点的具体验收标准（Acceptance Criteria）。
 
 ### 必须坚持的核心理念
-* 必须通过提问完善粗略的想法，探索替代方案，并将设计分成章节进行验证。保存设计文档。
-* 把工作分成小任务（每份 2-5 分钟）。每个任务都有精确的文件路径、完整的代码和验证步骤。
-* 不要怕询问次数过多，必须要确定所有疑惑和问题点。
-* 需要先评估本次需求对所属功能的规范文件(`.spec/{{功能}}/spec.md`)中的 `当前功能详细信息` 的设计文档按需求读取了解之前的设计
-* Don't assume. Don't hide confusion. Surface tradeoffs.Before implementing:
-  1. State your assumptions explicitly. If uncertain, ask.
-  2. If multiple interpretations exist, present them - don't pick silently.
-  3. If a simpler approach exists, say so. Push back when warranted.
-  4. If something is unclear, stop. Name what's confusing. Ask.
-* Touch only what you must. Clean up only your own mess.
-  * When editing existing things:
-     1. Don't refactor things that aren't broken.
-     2. Don't refactor things that aren't broken. 
-     3. Match existing style, even if you'd do it differently. 
- * When your changes create orphans:
-     1. Remove imports/variables/functions that YOUR changes made unused.
-     2. Don't remove pre-existing dead code unless asked.
- * The test: Every changed line should trace directly to the user's request.
-* Define success criteria. Loop until verified.
-  * Transform tasks into verifiable goals:
-    1. "Add validation" → "Write tests for invalid inputs, then make them pass"
-    2. "Fix the bug" → "Write a test that reproduces it, then make it pass"
-    3. "Refactor X" → "Ensure tests pass before and after"
+* **严禁盲目猜测（Don't assume）：** 严禁隐瞒疑惑。必须将潜在的权衡利弊（Trade-offs）摆在台面上。在实施前：
+  1. 显式阐述你的假设。如有不确定，立即提问。
+  2. 若存在多种实现方案，列出并对比它们，绝不悄悄做决定。
+  3. 如果有更简单的替代方案，请主动提出。在不合理的需求面前，要敢于据理力争（Push back）。
+  4. 一旦出现含糊不清的概念，立刻停下，指出困惑点并寻求澄清。
+* **克制改动（Touch only what you must）：** 严禁扩大修改范围，只清理因你而起的“战场”。
+  * **修改现有代码时：**
+    1. 没坏的代码绝对不要重构。
+    2. 没坏的代码绝对不要重构（重要的事情说两遍）。
+    3. 必须保持并适配现有的代码风格，即使你个人并不喜欢。
+  * **当你的修改产生“孤立残留”（Orphans）时：**
+    1. 必须清理掉因**你的改动**而变成无用的 Import、变量、函数或类。
+    2. 严禁清理由于历史原因遗留的死代码（除非用户明确要求）。
+  * **最终检验标准：** 每一行被修改的代码，都必须能直接追溯到用户的具体需求。
+* **可验证性：** 将任务转化为可验证的目标，定义成功指标，并循环迭代直至通过验证。
+  1. “添加表单校验” $\rightarrow$ “为非法输入编写测试用例，然后编写代码使其通过”。
+  2. “修复 Bug” $\rightarrow$ “编写一个复现该 Bug 的测试用例，然后修复它使其通过”。
+  3. “重构 X 模块” $\rightarrow$ “确保重构前后，所有的既有测试用例全部通过”。
 
-* 
-### 将最终的功能需求规划设计写入到需求设计文件(`.spec/{{功能}}/{{需求}}/design.md`)中
-### 后续的对话也必须按照当前规范来执行并根据输入持续修改需求设计文件(`.spec/{{功能}}/{{需求}}/design.md`)
+## 4. 产物交付与持久化
+* 将最终评审通过的功能需求规划与设计，写入到对应的需求设计文件（`.spec/{{功能}}/{{需求}}/design.md`）中。
+* 后续的对话必须严格基于该规范执行，并根据沟通进展持续迭代和修改该 `design.md` 文件。
 
-## 注意
-* 当前一个设计文件过于庞大时（400行左右），需要按照在`design.md`同级目录下增加`{{功能点}}.md`来拆分设计文档,在`design.md`中描述引用对应的子功能点。
-* 当`{{功能点}}.md`也过于庞大时同理，也同样拆分，也更贴合渐进式加载。
+## 5. 超大文件拆分原则
+* 当某个设计文件过于庞大（达到 400 行左右）时，必须进行物理拆分：在 `design.md` 同级目录下创建 `{{功能点}}.md`，并在主 `design.md` 中以引用/链接的形式描述子功能点。
+* 如果拆分出的 `{{功能点}}.md` 依然过于庞大，依此类推继续向下拆分，以实现架构的渐进式加载与阅读。
 
 ## 附录
 * .spec/{{功能}}/spec.md 文件格式
