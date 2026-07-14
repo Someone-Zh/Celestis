@@ -23,6 +23,8 @@ compatibility: "network: limited"
 ## 1. 前置条件校验
 * 执行前**必须**提供一个已存在的具体`.spec/{{领域(Domain)}}/{{功能(Feature)}}/design.md`文件，若未提供或路径不明确，**必须**主动向用户询问获取后方可继续。
 * 阅读所属领域规范文件（`.spec/{{领域}}/domain.spec.md`）,了解当前领域的设计规范。
+* 阅读设计方案（`.spec/{{领域(Domain)}}/{{功能(Feature)}}/design.md`）。
+* 阅读任务清单（`.spec/{{领域(Domain)}}/{{功能(Feature)}}/changes/tasks.md`）。
 ## 2. 实施前动作
 * 将当前`design.md` 文件和整个`changes`目录移入 同级的 `.archive` 目录下 `{{版本号}}` 目录内。（没有对应目录则创建,必须保证`.spec/{{领域(Domain)}}/{{功能(Feature)}}/`目录下只有`feature.spec.md`）。
 * 如果 `feature.spec.md` 不存在，则按照下方的 .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.md 文件格式创建文件。如果存在则根据本次改动去更新。
@@ -59,7 +61,7 @@ compatibility: "network: limited"
   2. “修复 Bug” $\rightarrow$ “编写一个复现该 Bug 的测试用例，然后修复它使其通过”。
   3. “重构 X 模块” $\rightarrow$ “确保重构前后，所有的既有测试用例全部通过”。
 * **坚持职责:** **必须**对给定的设计方案所有功能都严格实现，**必须**全部立即完成，**禁止**出现未完成的、mock的、不完整的功能,**禁止**完成部分功能，**禁止**后续再说。
-* **任务清单驱动：** **必须**严格按照 `changes/tasks.md` 中的任务清单逐一完成并维护好任务状态变更，不得跳过任何一个任务，也不得遗留任何一个任务。
+* **任务清单驱动：** **必须**严格按照 `changes/tasks.md`（归档）中的任务清单逐一完成并维护好任务状态变更，不得跳过任何一个任务，也不得遗留任何一个任务。
 
 
 ## 4. 大文件拆分原则
