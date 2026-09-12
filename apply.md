@@ -1,5 +1,5 @@
 ---
-name: apply
+name: apply-celestis
 description: 用于执行已规划好的`功能(Feature)`设计方案，将设计文档转化为可运行的代码实现。当用户提到"执行需求"、"开始开发"、"实现设计"、"落实方案"、"apply design"、"执行设计文档"时自主唤醒。适用于`功能(Feature)`目录已明确、design.md 已就绪的场景，核心职责包括 TDD 开发、测试用例编写、代码实现与质量保障。
 version: 1.0.0
 triggers:
@@ -65,10 +65,9 @@ compatibility: "network: limited"
 
 
 ## 4. 大文件拆分原则
-* 当某个功能文件`feature.spec.md`过于庞大（达到 400 行左右）时，必须进行物理拆分：在 `feature.spec.md` 同级目录下创建 `feature.{{具体子功能}}.md`，并在主 `feature.spec.md` 中以引用/链接的形式描述并连接到该子功能点。
-* 如果拆分出的 `feature.{{具体子功能}}.md` 依然过于庞大，依此类推继续向下拆分，以实现架构的渐进式加载与阅读。
-
-
+* 当某个功能文件`feature.spec.md`或API文件`feature.spec.api.md`过于庞大（大于500行）时，必须进行物理拆分：在 `feature.spec.md` 同级目录下创建 `feature.{{具体子功能}}.md`，并在主 `feature.spec.md` 中以引用/链接的形式描述并连接到该子功能点。`feature.spec.api.md` 则是拆分`feature.api.{{具体功能}}.md` 由 feature.spec.md 引入按需加载
+* 如果拆分出的 `feature.{{具体子功能}}.md` 或 `feature.api.{{具体功能}}.md` 依然过于庞大，依此类推继续向下拆分，以实现架构的渐进式加载与阅读。
+  
 ## 附录
 * changes/tasks.md 文件格式
 ``` changes/tasks.md
@@ -77,4 +76,9 @@ compatibility: "network: limited"
 * .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.md 文件格式
 ``` .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.md 文件格式
 @Template/feature_spec.md
+```
+
+* .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.api.md 文件格式
+```
+@Template/feature_api_spec.md
 ```

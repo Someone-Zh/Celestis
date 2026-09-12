@@ -7,6 +7,8 @@
     └── {{具体Feature名称}}/         #  特性（功能）固定的功能特性目录（例如：login）
         ├── feature.spec.md         # 【全量最新】该 Feature 的最新全量逻辑与对外规范
         ├── feature.{{具体子功能}}.md # 【可选】当feature功能设计过于复杂时拆分的子Feature 由 feature.spec.md 引入按需加载
+        ├── feature.api.md          # 【可选】当前featurede对外API（包括公开方法、对外端点等一切可供外部调用的） 由 feature.spec.md 引入按需加载,如果对外api过多可以多个名称为`feature.api.{{具体功能}}.md`
+        ├── feature.api.{{具体功能}}.md  # 【可选】 当 feature.api.md 文件大于500行时拆分的
         ├── design.md               # 当前版本的设计文档
         └── changes/                # 当前需求的更改目录 
             ├── tasks.md            # 当前需求的实施任务清单

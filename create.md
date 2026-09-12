@@ -1,5 +1,5 @@
 ---
-name: create
+name: create-celestis
 description: 用于创建新的功能需求设计方案，从用户意图到完整设计文档的规划工具。当用户提到"创建需求"、"新建功能"、"规划需求"、"设计新功能"、"create requirement"、"需求设计"、"功能规划"、"新需求"时自主唤醒。适用于从零开始规划功能的场景，核心职责包括需求收集、架构探索、设计文档编写与验收标准制定。
 version: 1.0.0
 triggers:
@@ -21,7 +21,7 @@ compatibility: "network: limited"
 ## 1. 从输入信息中分析领域与功能
 * 如果输入提供的是标准需求目录 `.spec/{{领域}}/{{功能}}/design.md`（例如：`.spec/auth/login/design.md`），请直接从中提取需求内容以及初步的设计方案。
 * 如果输入的目录不完整（例如仅有 `.spec/{{领域}}/{{功能}}` 或 `.spec/{{领域}}`），则根据已有信息进行追问。
-* 如果给定信息为设计方案（文件或者直接提供），则直接分析方案自动划分或新建到相应的领域与功能（允许同时操作多个领域的多个功能）。
+* 如果给定信息为设计方案（文件或者直接提供），则直接分析方案自动划分或新建到相应的领域与功能（允许同时操作多个领域的多个功能）生成多个设计方案（这个为主要形式，需要务必仔细分析功能拆分的领域和功能，不确定时可以询问）。
 * 如果完全没有提供上下文或信息无法确定，必须进一步提问。
 * **只有在完整获取到领域、功能、设计三要素后，才允许执行后续的“创建功能需求”流程。**
 
@@ -46,6 +46,14 @@ compatibility: "network: limited"
 11. **原子拆解：** 必须将宏观需求拆解为“2-5分钟即可完成/验证”的原子级微型任务。必须根据设计在执行前生成任务清单，必须在当前`功能(Feature)`目录下生成 `changes/tasks.md` 文件，其内容格式**必须**严格遵守附录中的 `changes/tasks.md` 模板。
 12. **外部变更记录：** 若涉及外部依赖或配置的变更，需生成对应的变更文件并写入到 `changes/{{变更的文件名.格式}}` 中（比如数据库的变更文件 `changes/20240812123456_create_table.sql`）。
 
+### 询问规范 
+1. 这个答案是不是在用户的设计中已经有了，不要询问那些已有答案的问题。
+2. 未确认明确的技术选型与架构差异。
+3. 需求模糊或存在盲区。
+4. 隐藏的重构与破坏性更改。
+5. 涉及安全、隐私与敏感配置。
+6. 存在性能与资源消耗的取舍。
+7. 模糊数据结构的敲定。
 
 ### 必须坚持的核心理念
 * **严禁盲目猜测（Don't assume）：** 严禁隐瞒疑惑。必须将潜在的权衡利弊（Trade-offs）摆在台面上。在实施前：
@@ -79,16 +87,26 @@ compatibility: "network: limited"
 * 后续的对话必须严格基于该规范执行，并根据沟通进展持续迭代和修改该 `design.md` 文件。
 
 
+## 5. 大文件拆分原则
+* 当某个功能文件`feature.spec.md`或API文件`feature.spec.api.md`过于庞大（大于500行）时，必须进行物理拆分：在 `feature.spec.md` 同级目录下创建 `feature.{{具体子功能}}.md`，并在主 `feature.spec.md` 中以引用/链接的形式描述并连接到该子功能点。`feature.spec.api.md` 则是拆分`feature.api.{{具体功能}}.md` 由 feature.spec.md 引入按需加载
+* 如果拆分出的 `feature.{{具体子功能}}.md` 或 `feature.api.{{具体功能}}.md` 依然过于庞大，依此类推继续向下拆分，以实现架构的渐进式加载与阅读。
+
+
 ## 附录
 * changes/tasks.md 文件格式
-``` changes/tasks.md
+```
 @Template/task.md
 ```
 * .spec/{{领域}}/domain.spec.md 文件格式
-``` .spec/{{领域}}/domain.spec.md
+```
 @Template/domain_spec.md
 ```
 * .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.md 文件格式
-``` .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.md 文件格式
+```
 @Template/feature_spec.md
+```
+
+* .spec/{{领域(Domain)}}/{{功能(Feature)}}/feature.spec.api.md 文件格式
+```
+@Template/feature_api_spec.md
 ```
