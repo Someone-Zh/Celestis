@@ -1,0 +1,34 @@
+{
+  "product": "Celestis",
+  "common": {
+    "spec_root": ".spec",
+    "archive_root": ".archive",
+    "docs_root": "dist/spec-docs"
+  },
+  "skills": {
+    "init": {
+      "name": "init-celestis",
+      "version": "1.1.0",
+      "argument_hint": "[项目根目录]",
+      "compatibility": "network: none"
+    },
+    "create": {
+      "name": "create-celestis",
+      "version": "1.1.0",
+      "argument_hint": "[功能名称] [需求名称]",
+      "compatibility": "network: limited"
+    },
+    "apply": {
+      "name": "apply-celestis",
+      "version": "1.1.0",
+      "argument_hint": "[`功能(Feature)`目录路径]",
+      "compatibility": "network: limited"
+    },
+    "fix": {
+      "name": "fix-celestis",
+      "version": "1.1.0",
+      "argument_hint": "[需求目录路径] 或 [fix.md路径] 或 [修正描述]",
+      "compatibility": "network: limited"
+    }
+  }
+}
